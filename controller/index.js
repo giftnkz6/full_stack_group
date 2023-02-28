@@ -30,11 +30,11 @@ route.put('/user/:id',bodyParser.json(), (req, res)=>{
 });
 // Register
 route.post('/register', bodyParser.json(), (req, res)=> {
-    user.createUser(req, res);
+    user.newUser(req, res);
 })
 // Delete
 route.delete('/user/:id', (req, res)=>{
-    user.deleteUser(req, res);
+    user.removeUser(req, res);
 });
 // =====Products======
 // Fetch all products
