@@ -1,5 +1,5 @@
 // Database configuration
-const db = require('../config');
+const dataBs = require('../config');
 // bcrypt module
 const {hash, compare, hashSync } = require('bcrypt');
 // Middleware for creating a token
@@ -8,13 +8,13 @@ const {createToken} = require('../middleware/AuthenticatedUser');
 class User {
     login(req, res) {
         const {emailAdd, userPass} = req.body;
-        const strQry = 
+        const qur = 
         `
         SELECT firstName, lastName, gender, emailAdd, userPass, userRole, userProfile
         FROM Users
         WHERE emailAdd = '${emailAdd}';
         `;
-        db.query(strQry, async (err, data)=>{
+        dataBs.query(qur, async (err, data)=>{
             if(err) throw err;
             if((!data.length) || (data == null)) {
                 res.status(401).json({err: 
@@ -52,28 +52,28 @@ class User {
             }
         })     
     }
-    fetchUsers(req, res) {
-        const strQry = 
+    getUsers(req, res) {
+        const qur = 
         `
         SELECT userID, firstName, lastName, gender, cellphoneNumber, emailAdd, userPass, userRole, userProfile, joinDate
         FROM Users;
         `;
-        //db
-        db.query(strQry, (err, data)=>{
+        //dataBs
+        dataBs.query(qur, (err, data)=>{
             if(err) throw err;
             else res.status(200).json( 
                 {results: data} );
         })
     }
-    fetchUser(req, res) {
-        const strQry = 
+    getUser(req, res) {
+        const qur = 
         `
         SELECT userID, firstName, lastName, gender, cellphoneNumber, emailAdd, userPass, userRole, userProfile, joinDate
         FROM Users
         WHERE userID = ?;
         `;
-        //db
-        db.query(strQry,[req.params.id], 
+        //dataBs
+        dataBs.query(qur,[req.params.id], 
             (err, data)=>{
             if(err) throw err;
             else res.status(200).json( 
@@ -81,22 +81,22 @@ class User {
         })
 
     }
-    async createUser(req, res) {
+    async newUser(req, res) {
         //Payload req.body to fetch data from user Payload = is an information coming from the user
-        let detail = req.body;
+        let info = req.body;
         // Hashing user password
-        detail.userPass = await 
-        hash(detail.userPass, 15);
+        info.userPass = await 
+        hash(info.userPass, 15);
         // This information will be used for authentication.
         let user = {
-            emailAdd: detail.emailAdd,
-            userPass: detail.userPass
+            emailAdd: info.emailAdd,
+            userPass: info.userPass
         }
         // sql query
-        const strQry =
+        const qur =
         `INSERT INTO Users
         SET ?;`;
-        db.query(strQry, [detail], (err)=> {
+        dataBs.query(qur, [info], (err)=> {
             if(err) {
                 res.status(401).json({err});
             }else {
@@ -112,33 +112,33 @@ class User {
             }
         })    
     }
-    updateUser(req, res) {
+    editUser(req, res) {
         let data = req.body;
         if(data.userPass !== null || 
             data.userPass !== undefined)
             data.userPass = hashSync(data.userPass, 15);
-        const strQry = 
+        const qur = 
         `
         UPDATE Users
         SET ?
         WHERE userID = ?;
         `;
-        //db
-        db.query(strQry,[data, req.params.id], 
+        //dataBs
+        dataBs.query(qur,[data, req.params.id], 
             (err)=>{
             if(err) throw err;
             res.status(200).json( {msg: 
                 "A row was affected"} );
         })    
     }
-    deleteUser(req, res) {
-        const strQry = 
+    removeUser(req, res) {
+        const qur = 
         `
         DELETE FROM Users
         WHERE userID = ?;
         `;
-        //db
-        db.query(strQry,[req.params.id], 
+        //dataBs
+        dataBs.query(qur,[req.params.id], 
             (err)=>{
             if(err) throw err;
             res.status(200).json( {msg: 
@@ -148,33 +148,33 @@ class User {
 }
 // Product
 class Product {
-    fetchProducts(req, res) {
-        const strQry = `SELECT id, prodName, prodDescription, 
+    getProducts(req, res) {
+        const qur = `SELECT id, prodName, prodDescription, 
         category, price, prodQuantity, imgURL
         FROM Products;`;
-        db.query(strQry, (err, results)=> {
+        dataBs.query(qur, (err, results)=> {
             if(err) throw err;
             res.status(200).json({results: results})
         });
     }
-    fetchProduct(req, res) {
-        const strQry = `SELECT id, prodName, prodDescription, 
+   getProduct(req, res) {
+        const qur = `SELECT id, prodName, prodDescription, 
         category, price, prodQuantity, imgURL
         FROM Products
         WHERE id = ?;`;
-        db.query(strQry, [req.params.id], (err, results)=> {
+        dataBs.query(qur, [req.params.id], (err, results)=> {
             if(err) throw err;
             res.status(200).json({results: results})
         });
 
     }
-    addProduct(req, res) {
-        const strQry = 
+    newProduct(req, res) {
+        const qur = 
         `
         INSERT INTO Products
         SET ?;
         `;
-        db.query(strQry,[req.body],
+        dataBs.query(qur,[req.body],
             (err)=> {
                 if(err){
                     res.status(400).json({err: "Unable to insert a new record."});
@@ -185,14 +185,14 @@ class Product {
         );    
 
     }
-    updateProduct(req, res) {
-        const strQry = 
+    editProduct(req, res) {
+        const qur = 
         `
         UPDATE Products
         SET ?
         WHERE id = ?
         `;
-        db.query(strQry,[req.body, req.params.id],
+        dataBs.query(qur,[req.body, req.params.id],
             (err)=> {
                 if(err){
                     res.status(400).json({err: "Unable to update a record."});
@@ -203,13 +203,13 @@ class Product {
         );    
 
     }
-    deleteProduct(req, res) {
-        const strQry = 
+    removeProduct(req, res) {
+        const qur = 
         `
         DELETE FROM Products
         WHERE id = ?;
         `;
-        db.query(strQry,[req.params.id], (err)=> {
+        dataBs.query(qur,[req.params.id], (err)=> {
             if(err) res.status(400).json({err: "The record was not found."});
             res.status(200).json({msg: "A product was deleted."});
         })
