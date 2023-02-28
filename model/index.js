@@ -18,7 +18,7 @@ class User {
             if(err) throw err;
             if((!data.length) || (data == null)) {
                 res.status(401).json({err: 
-                    "You provide a wrong email address"});
+                    "Wrong email address"});
             }else {
                 await compare(userPass, 
                     data[0].userPass, 
