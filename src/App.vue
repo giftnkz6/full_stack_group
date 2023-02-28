@@ -1,9 +1,26 @@
 <template>
   <nav>
     <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+    <router-link to="/products">Shop</router-link> |
+    <router-link to="/admin">Admin</router-link> |
+    <router-link to="/login">Log-in</router-link> |
+    <router-link to="/register">Register</router-link> |
+    <router-link to="/userProfile">User Profile</router-link>
   </nav>
   <router-view/>
+
+  <div class="footer">
+    <footer>
+        <p>Copyrights @Sports and Gym wear Emporium © 2023</p>
+          <div class="links">
+            <ul>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+          </ul>
+          </div>
+      </footer>
+</div>
 </template>
 
 <style>
@@ -12,19 +29,54 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
+  color: #14134A;
+  padding: 0;
+  margin: 0;
+  font-family: monospace;
+  height: 200px;
+  background-image: linear-gradient(to bottom right, D49EF3, F37C8D);
 }
 
 nav {
-  padding: 30px;
+  padding: 0px;
 }
 
 nav a {
-  font-weight: bold;
-  color: #2c3e50;
+  font-weight:lighter;
+  color:#14134A;
 }
 
 nav a.router-link-exact-active {
-  color: #42b983;
+  color: #A300FF;
+}
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  color:#14134A;
+  padding: 0px;
+  text-align: center;
+}
+
+footer a {
+  color:#14134A;
+  justify-content: space-between;
+}
+
+ul{
+  display: inline-flex;
+  justify-content: space-between;
+}
+
+ul li {
+  margin: 5px;
+  list-style: none;
+}
+
+ul li a {
+  text-decoration: none; 
+}
+ul li a.hover-exact-active {
+  color:  #ffe100;
 }
 </style>
