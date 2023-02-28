@@ -2,7 +2,7 @@
 require('dotenv').config();
 const {sign, verify} = require('jsonwebtoken');
 // Creating a token
-function createToken(user) {
+function newToken(user) {
     return sign({
         emailAdd: user.emailAdd,
         userPass: user.userPass
@@ -13,7 +13,7 @@ function createToken(user) {
     });
 }
 //
-function verifyAToken(req, res, next) {
+function tokenVerification(req, res, next) {
     try{
         const token = req.cookies["LegitUser"] !== null ? req.cookies["LegitUser"] :
         "Please register" ;
@@ -33,4 +33,4 @@ function verifyAToken(req, res, next) {
         res.status(400).json({err: e.message});
     }
 }
-module.exports= {createToken, verifyAToken};
+module.exports= {newToken, tokenVerification};

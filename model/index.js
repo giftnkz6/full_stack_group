@@ -3,7 +3,7 @@ const dataBs = require('../config');
 // bcrypt module
 const {hash, compare, hashSync } = require('bcrypt');
 // Middleware for creating a token
-const {createToken} = require('../middleware/AuthenticatedUser');
+const {newToken} = require('../middleware/AuthenticatedUser');
 // User 
 class User {
     login(req, res) {
@@ -22,11 +22,11 @@ class User {
             }else {
                 await compare(userPass, 
                     data[0].userPass, 
-                    (cErr, cResult)=> {
-                        if(cErr) throw cErr;
+                    (comError, compareOutput)=> {
+                        if(comError) throw comError;
                         // Create a token
                         const jwToken = 
-                        createToken(
+                        newToken(
                             {
                                 emailAdd, userPass  
                             }
@@ -37,15 +37,15 @@ class User {
                             maxAge: 3600000,
                             httpOnly: true
                         })
-                        if(cResult) {
+                        if(compareOutput) {
                             res.status(200).json({
-                                msg: 'Logged in',
+                                message: 'Successfully logged in',
                                 jwToken,
                                 result: data[0]
                             })
                         }else {
                             res.status(401).json({
-                                err: 'You entered an invalid password or did not register. '
+                                err: 'You need to register first or enter valid password and email. '
                             })
                         }
                     })
@@ -101,14 +101,14 @@ class User {
                 res.status(401).json({err});
             }else {
                 // Create a token
-                const jwToken = createToken(user);
+                const jwToken = newToken(user);
                 // This token will be saved in the cookie. 
                 // The duration is in milliseconds.
                 res.cookie("LegitUser", jwToken, {
                     maxAge: 3600000,
                     httpOnly: true
                 });
-                res.status(200).json({msg: "A user record was saved."})
+                res.status(200).json({message: "A new user record was saved."})
             }
         })    
     }
@@ -127,8 +127,8 @@ class User {
         dataBs.query(qur,[data, req.params.id], 
             (err)=>{
             if(err) throw err;
-            res.status(200).json( {msg: 
-                "A row was affected"} );
+            res.status(200).json( {message: 
+                "A user was updated"} );
         })    
     }
     removeUser(req, res) {
@@ -141,8 +141,8 @@ class User {
         dataBs.query(qur,[req.params.id], 
             (err)=>{
             if(err) throw err;
-            res.status(200).json( {msg: 
-                "A record was removed from a database"} );
+            res.status(200).json( {message: 
+                "A user record was removed from the database"} );
         })    
     }
 }
@@ -179,7 +179,7 @@ class Product {
                 if(err){
                     res.status(400).json({err: "Unable to insert a new record."});
                 }else {
-                    res.status(200).json({msg: "Product saved"});
+                    res.status(200).json({message: "Product saved"});
                 }
             }
         );    
@@ -197,7 +197,7 @@ class Product {
                 if(err){
                     res.status(400).json({err: "Unable to update a record."});
                 }else {
-                    res.status(200).json({msg: "Product updated"});
+                    res.status(200).json({message: "Product updated"});
                 }
             }
         );    
@@ -211,7 +211,7 @@ class Product {
         `;
         dataBs.query(qur,[req.params.id], (err)=> {
             if(err) res.status(400).json({err: "The record was not found."});
-            res.status(200).json({msg: "A product was deleted."});
+            res.status(200).json({message: "A product was deleted."});
         })
     }
 
