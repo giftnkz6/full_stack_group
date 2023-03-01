@@ -40,7 +40,7 @@ route.post('/register', bodyParser.json(), (req, res)=> {
 route.delete('/user/:id', (req, res)=>{
     user.removeUser(req, res);
 });
-// =====Products======
+
 // Fetch all products
 route.get('/products', (req, res)=> {
     product.getProducts(req, res);
