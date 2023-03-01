@@ -9,7 +9,7 @@
   </nav>
   <router-view/>
 
-  <div class="footer">
+  <!-- <div class="footer">
     <footer>
         <p>Copyrights @Sports and Gym wear Emporium © 2023</p>
           <div class="links">
@@ -20,7 +20,7 @@
           </ul>
           </div>
       </footer>
-</div>
+</div> -->
 </template>
 
 <style>

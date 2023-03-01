@@ -1,6 +1,6 @@
 <template >
     <div class="footer">
-        <footer>
+        <!-- <footer>
             <p>Copyrights @ Move Sportswear © 2023</p>
               <div class="links">
                 <ul>
@@ -9,7 +9,7 @@
                 <li><a href="#">Privacy Policy</a></li>
               </ul>
               </div>
-          </footer>
+          </footer> -->
     </div>
 </template>
 
