@@ -51,20 +51,15 @@ route.get('/product/:id',
     product.getProduct(req, res);
 })
 // Add a new product
-route.post('/product', 
-bodyParser.json(), 
-(req, res)=> {
+route.post('/product', bodyParser.json(), (req, res)=> {
     product.newProduct(req, res);
 })
 // Update a product
-route.put('/product/:id', 
-bodyParser.json(),
-(req, res)=> {
+route.put('/product/:id', bodyParser.json(),(req, res)=> {
     product.editProduct(req, res);
 })
 // Delete a product
-route.delete('/product/:id', 
-(req, res)=> {
+route.delete('/product/:id', (req, res)=> {
     product.removeProduct(req, res);
 })
 

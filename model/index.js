@@ -216,7 +216,7 @@ class Product {
     }
 
 }
-// Export User class
+// Export User and Product class
 module.exports = {
     User, 
     Product
