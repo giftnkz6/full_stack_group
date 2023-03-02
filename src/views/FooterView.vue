@@ -1,17 +1,22 @@
-<template >
-    <div class="footer">
-        <!-- <footer>
-            <p>Copyrights @ Move Sportswear © 2023</p>
-              <div class="links">
-                <ul>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="#">Privacy Policy</a></li>
-              </ul>
-              </div>
-          </footer> -->
+<template>
+    <div>
+      <HeaderComponent />
+      <MainView />
+      <FooterComponent />
     </div>
-</template>
+  </template>
+  
+  <script>
+
+  import FooterComponent from './FooterComponent.vue'
+  
+  export default {
+    name: 'App',
+    components: {
+      FooterComponent
+    }
+  }
+  </script>
 
 <style>
 footer {
@@ -42,7 +47,7 @@ ul li a {
     text-decoration: none;
     
 }
-#hover {
+a:hover {
     color: palevioletred;
 }
     

@@ -8,20 +8,8 @@
     <router-link to="/userProfile">User Profile</router-link>
   </nav>
   <router-view/>
-
-  <!-- <div class="footer">
-    <footer>
-        <p>Copyrights @Sports and Gym wear Emporium © 2023</p>
-          <div class="links">
-            <ul>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Contact</a></li>
-            <li><a href="#">Privacy Policy</a></li>
-          </ul>
-          </div>
-      </footer>
-</div> -->
 </template>
+
 
 <style>
 #app {

@@ -1,92 +1,64 @@
 <template>
-  <div class="admin">
-    <h6>Only authorized personnel beyond this point</h6>
-    <table class="table table-bordered">
-      <thead>
-        <tr>
-          <th scope="col">UserId</th>
-          <th scope="col">firstName</th>
-          <th scope="col">lastName</th>
-          <th scope="col">gender</th>
-          <th scope="col">cellphoneNumber</th>
-          <th scope="col">emailAdd</th>
-          <th scope="col">userPass</th>
-          <th scope="col">userRole</th>
-          <th scope="col">userProfile</th>
-          <th scope="col">joinDate</th>
-          <th scope="col">Edit/Delete</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th scope="row">1</th>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td><button type="button" class="btn btn-warning">Edit</button><button type="button" class="btn btn-danger">Delete</button></td>
-        </tr>
-        <tr>
-          <th scope="row">2</th>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td><button type="button" class="btn btn-warning">Edit</button><button type="button" class="btn btn-danger">Delete</button></td>
-        </tr>
-        <tr>
-          <th scope="row">3</th>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td><button type="button" class="btn btn-warning">Edit</button><button type="button" class="btn btn-danger">Delete</button></td>
-        </tr>
-        <tr>
-          <th scope="row">4</th>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td><button type="button" class="btn btn-warning">Edit</button><button type="button" class="btn btn-danger">Delete</button></td>
-        </tr>
-        <tr>
-          <th scope="row">5</th>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td></td>
-          <td><button type="button" class="btn btn-warning">Edit</button><button type="button" class="btn btn-danger">Delete</button></td>
-        </tr>
-      </tbody>
-    </table>
+  <template>
+    <div class="admin-view">
+      <h1>Admin View</h1>
+      <table>
+        <thead>
+          <tr>
+            <th>User ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Gender</th>
+            <th>Cellphone Number</th>
+            <th>Email Address</th>
+            <th>User Password</th>
+            <th>User Profile</th>
+            <th>Join Date</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr v-for="(user, index) in users" :key="index">
+            <td>{{ user.userId }}</td>
+            <td>{{ user.firstName }}</td>
+            <td>{{ user.lastName }}</td>
+            <td>{{ user.gender }}</td>
+            <td>{{ user.cellphoneNumber }}</td>
+            <td>{{ user.emailAdd }}</td>
+            <td>{{ user.userPass }}</td>
+            <td>{{ user.userProfile }}</td>
+            <td>{{ user.joinDate }}</td>
+            <td>
+              <button @click="editUser(user)">Edit</button>
+              <button @click="deleteUser(index)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </template>
+  
+  <!-- <script>
+  export default {
+    name: 'AdminView',
+    props: {
+      users: {
+        type: Array,
+        required: true
+      }
+    },
+    methods: {
+      editUser(user) {
 
-  </div>
+      },
+      deleteUser(index) {
+
+      }
+    }
+  }
+  </script> -->
+
+  
 
   
 
