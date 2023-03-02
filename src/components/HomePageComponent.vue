@@ -1,16 +1,16 @@
 <template>
-    <div class="home">
-        <h1>Home</h1>
+    <div class="home-page">
+        
     </div>
-</template>
+  </template>
+  
+  <script>
+  export default {
+    name: 'HomePageComponent'
+  }
+  </script>
+  
+  <style>
 
-<script>
-export default {
-    
-}
-</script>
-<style>
-p{
-    color: #00ffc0;
-}
-</style>
+  </style>
+  

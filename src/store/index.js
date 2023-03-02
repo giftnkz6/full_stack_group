@@ -1,4 +1,6 @@
 import { createStore } from 'vuex'
+import axios from 'axios';
+const backendURL = "https://full-stack-group.onrender.com/";
 export default createStore({
   state: {
     users: null,
@@ -26,24 +28,42 @@ export default createStore({
   },
   actions: {
     getUsers: async(context) => {
-      fetch("https://full-stack-group.onrender.com/users")
-        .then((res) => res.json())
-        .then((users) => context.commit("setUsers", users));
+      // fetch(`${backendURL}users`)
+      //   .then((res) => res.json())
+      //   .then((users) =>{
+      //     console.log(users);
+      //     context.commit("setUsers", users);
+      //   });
+      const res = await axios.get(`${backendURL}users`);
+      const {results} = await res.data;
+      if(results) {
+        console.log(results)
+        context.commit('setUsers', results);
+      }
     },
     getProducts: async(context) => {
-      fetch("https://full-stack-group.onrender.com/products")
-        .then((res) => res.json())
-        .then((products) => context.commit("setProducts", products));
+      const res = await axios.get(`${backendURL}products`);
+      const {results} = await res.data;
+      if(results) {
+        console.log(results)
+        context.commit('setProducts', results);
+      }
     },
     getUser: async(context) => {
-      fetch("https://full-stack-group.onrender.com/user/" + id)
-        .then((res) => res.json())
-        .then((user) => context.commit("setuser", user));
+      const res = await axios.get(`${backendURL}user`);
+      const {results} = await res.data;
+      if(results) {
+        console.log(results)
+        context.commit('setUser', results);
+      }
     },
     getProduct: async(context) => {
-      fetch("https://full-stack-group.onrender.com/product" + id)
-        .then((res) => res.json())
-        .then((product) => context.commit("setProduct", product));
+      const res = await axios.get(`${backendURL}product`);
+      const {results} = await res.data;
+      if(results) {
+        console.log(results)
+        context.commit('setProduct', results);
+      }
     },
     register: async(context, payload) => {
       const {firstName, lastName, gender, cellphoneNumber, emailAdd, userPass, userRole, userProfile, joinDate} = payload
@@ -66,45 +86,50 @@ export default createStore({
         .then((response) => response.json())
         .then((json) => context.commit("setUser", json));
       },
-    login: async(context, payload) => {
-      const { emailAdd, userPass } = payload;
-      const response = await fetch(
-        `https://full-stack-group.onrender.com/users?emailAdd=${emailAdd}&userPass${userPass}`
-      );
-      const personalDetails = await response.json();
-      context.commit("setUser", personalDetails[0]);
-    },
-    editUser: async(context, user) => {
-      fetch("https://full-stack-group.onrender.com/user/" + user.id, {
-        method: "PUT",
-        body: JSON.stringify(user),
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-        },
-      })
-        .then((response) => response.json())
-        .then(() => context.dispatch("getUsers"));
-    },
-    editProduct: async(context, product) => {
-      fetch("https://full-stack-group.onrender.com/product/" + product.id, {
-        method: "PUT",
-        body: JSON.stringify(product),
-        headers: {
-          "Content-type": "application/json; charset=UTF-8",
-        },
-      })
-        .then((response) => response.json())
-        .then(() => context.dispatch("getUsers"));
-    },
-    deleteUser: async(context, id) => {
-      fetch("https://full-stack-group.onrender.com/user/" + id, {
-        method: "DELETE",
-      }).then(() => context.dispatch("getUsers"));
-    },
-    deleteProduct: async(context, id) => {
-      fetch("https://full-stack-group.onrender.com/product/" + id, {
-        method: "DELETE",
-      }).then(() => context.dispatch("getProducts"));
+      async login(context, payload) {
+        const res = await axios.post(`${backendURL}login`, payload);
+        const {result, err} = await res.data;
+        if(result) {
+          context.commit('setUser', result);
+        }else{
+          context.commit('setMessage', err)
+        }
+      },
+      async register(context, payload) {
+        let res = await axios.post(`${backendURL}resgister`, payload);
+        let {msg, err} = await res.data;
+        if(msg) {
+          context.commit('setMessage', msg);
+        }else{
+          context.commit('setMessage', err);
+        }
+      },
+      async editUser (context, payload) {
+        const res = await axios.put(`${backendURL}editUser`, payload)
+        const { msg, err } = await res.data
+        if (msg) {
+          context.commit('setUser', msg)
+        } else {
+          context.commit('setMessage', err)
+        }
+      },
+      async editProduct (context, payload) {
+        const res = await axios.put(`${backendURL}editProduct`, payload)
+        const { msg, err } = await res.data
+        if (msg) {
+          context.commit('setProduct', msg)
+        } else {
+          context.commit('setMessage', err)
+        }
+      },
+      async deleteProduct (context, payload) {
+      const res = await axios.delete(`${backendURL}deleteProduct`, payload)
+      const { msg, err } = await res.data
+      if (msg) {
+        context.commit('setProduct', msg)
+      } else {
+        context.commit('setMessage', err)
+      }
     },
   },
   modules: {

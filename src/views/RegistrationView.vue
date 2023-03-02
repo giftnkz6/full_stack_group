@@ -56,7 +56,17 @@
                   </svg>
                 <input type="url" placeholder="imageUrl" class="input-field">
               </div>
-              <button class="btn" type="submit">Register</button>
+              <!-- <button class="btn" type="submit">Register</button> -->
+              <div class="btn" type="submit">
+                <div class="box">R</div>
+                <div class="box">E</div>
+                <div class="box">G</div>
+                <div class="box">I</div>
+                <div class="box">S</div>
+                <div class="box">T</div>
+                <div class="box">E</div>
+                <div class="box">R</div>
+            </div>
               <a href="#" class="btn-link">Register with Google</a>
             </form>
           </div>
@@ -71,10 +81,10 @@
     background: #ffffff;
     margin-top: 20px;
     margin-left: 287px;
+    box-shadow: 0 0 15px #14134A;
+
    }
-h5 {
-    color: #ffffff;
-}
+
 
 .field {
     margin-top: 0.55rem;
@@ -108,7 +118,7 @@ h5 {
     color: #14134A;
    }
    
-
+/*
 .btn {
     margin: 1rem;
     border: none;
@@ -118,8 +128,8 @@ h5 {
     text-transform: uppercase;
     padding: 0.6em 1.2em;
     background-color:#14134A;
-    color: #e7eaf4;
-    box-shadow: 0 8px 24px 0 rgba(31, 21, 21, 0.093);
+    color: #A300FF;
+    box-shadow: 0 0 20px #14134A;
     transition: all .3s ease-in-out;
 }
    
@@ -129,21 +139,71 @@ h5 {
     font-size: .75em;
     transition: color .3s ease-out;
 }
-   
-   /*Hover & focus*/
-.field input:focus::placeholder {
-    opacity: 0;
-    transition: opacity .3s;
-}
-   
+
 .btn:hover {
-    background-color: #A300FF;
-    color: #14134A;
-    box-shadow: 0 8px 24px 0 rgb(16 39 112 / 20%);
+  background-color: #A300FF;
+  color: #14134A;
+  box-shadow: 0 8px 24px 0 rgb(16 39 112 / 20%);
 }
-   
+ 
 .btn-link:hover {
-    color:#A300FF;
+  color:#A300FF;
+}
+*/
+.btn {
+  display: flex;
+}
+
+.box {
+  width: 35px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  font-weight: 700;
+  color: #fff;
+  transition: all .8s;
+  cursor: pointer;
+  position: relative;
+  background: rgb(58, 165, 253);
+  overflow: hidden;
+}
+
+.box:before {
+  content: "D";
+  position: absolute;
+  top: 0;
+  background: #0f0f0f;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(100%);
+  transition: transform .4s;
+}
+
+.box:nth-child(2)::before {
+  transform: translateY(-100%);
+  content: 'O';
+}
+
+.box:nth-child(3)::before {
+  content: '-';
+}
+
+.box:nth-child(4)::before {
+  transform: translateY(-100%);
+  content: 'I';
+}
+
+.box:nth-child(5)::before {
+  content: 'T';
+}
+
+.button:hover .box:before {
+  transform: translateY(0);
 }
    
 </style>

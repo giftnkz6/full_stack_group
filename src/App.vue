@@ -8,8 +8,8 @@
     <router-link to="/userProfile">User Profile</router-link>
   </nav>
   <router-view/>
-</template>
 
+</template>
 
 <style>
 #app {
@@ -23,6 +23,10 @@
   font-family: monospace;
   height: 200px;
   background-image: linear-gradient(to bottom right, D49EF3, F37C8D);
+}
+
+img{
+  width: 5rem;
 }
 
 nav {

@@ -1,4 +1,4 @@
-<template>
+<!-- <template>
     <div class="admin">
       <h2>Admin Component</h2>
       <form @submit.prevent="addUser">
@@ -39,6 +39,8 @@
           <select v-model="newUser.userProfile" required>
             <option value="admin">Admin</option>
           </template>
+
+
 <style>
 
-</style>
+</style> -->

@@ -1,20 +1,18 @@
 <template>
-  <template>
     <div class="admin-view">
-      <h1>Admin View</h1>
-      <table>
+      <table class="table" >
         <thead>
           <tr>
-            <th>User ID</th>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Gender</th>
-            <th>Cellphone Number</th>
-            <th>Email Address</th>
-            <th>User Password</th>
-            <th>User Profile</th>
-            <th>Join Date</th>
-            <th>Action</th>
+            <th scope="col">User ID</th>
+            <th scope="col">FirstName</th>
+            <th scope="col">LastName</th>
+            <th scope="col">Gender</th>
+            <th scope="col">cellphone number</th>
+            <th scope="col">Email Address</th>
+            <!-- <th scope="col">User Password</th> -->
+            <th scope="col">User Profile</th>
+            <th scope="col">Join Date</th>
+            <th scope="col">Edit/Delete</th>
           </tr>
         </thead>
         <tbody>
@@ -25,44 +23,62 @@
             <td>{{ user.gender }}</td>
             <td>{{ user.cellphoneNumber }}</td>
             <td>{{ user.emailAdd }}</td>
-            <td>{{ user.userPass }}</td>
+            <!-- <td>{{ user.userPass }}</td> -->
             <td>{{ user.userProfile }}</td>
             <td>{{ user.joinDate }}</td>
             <td>
-              <button @click="editUser(user)">Edit</button>
-              <button @click="deleteUser(index)">Delete</button>
-            </td>
+              <button type="button" class="btn btn warning" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="editUser(user)">Edit</button>
+            <button type="button" class="btn btn danger" @click="deleteUser(index)">Delete</button>
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">ID</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <form>
+                      <div class="mb-3">
+                        <label for="recipient-name" class="col-form-label">firstName</label>
+                        <input type="text" class="form-control" id="recipient-name">
+                      </div>
+                      <div class="mb-3">
+                        <label for="message-text" class="col-form-label" placeholder="0834597356"></label>
+                        <input type="text" class="form-control" id="cellphoneNumber">
+                      </div>
+                    </form>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+            </td>         
           </tr>
         </tbody>
       </table>
     </div>
+
+
   </template>
   
-  <!-- <script>
+  <script>
   export default {
-    name: 'AdminView',
-    props: {
-      users: {
-        type: Array,
-        required: true
-      }
-    },
-    methods: {
-      editUser(user) {
-
+      name: 'AdminView',
+      components: {
       },
-      deleteUser(index) {
-
-      }
-    }
+      computed: {
+          users() {
+              return this.$store.state.users;
+          },
+      },
+      mounted() {
+          this.$store.dispatch("getUsers")
+      },
   }
-  </script> -->
-
-  
-
-  
-
-</template>
+</script>
 
 <style>
 table{
@@ -81,6 +97,9 @@ h6{
 .btn{
   font-size: 5px;
   
+}
+.products-view{
+  margin-top: 170px;
 }
 
 </style>
