@@ -13,7 +13,7 @@ const {errorHandling} = require('./middleware/ErrorHandling');
 const cookieParser = require('cookie-parser');
 
 app.use((req, res, next)=> {
-        res.header('Access-Control-Allow-Origin', 'http://localhost:8081')
+        res.header('Access-Control-Allow-Origin', 'http://localhost:8082')
         res.header("Access-Control-Allow-Credentials", "true")
         res.header("Access-Control-Allow-Methods", "*")
         res.header("Access-Control-Allow-Headers", "*")
