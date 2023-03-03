@@ -1,7 +1,7 @@
 <template>
     <div class="user-profile-view">
       <h2>User Profile View</h2>
-      <img :src="user.picture" alt="User Picture" />
+      <img :src="user.imgURL" alt="User Picture" />
       <h3>{{ user.firstName }} {{ user.lastName }}</h3>
       <p>Gender: {{ user.gender }}</p>
       <p>Cellphone Number: {{ user.cellphoneNumber }}</p>

@@ -43,18 +43,16 @@ export default {
   },
 };
 </script>
-
-<style>
+<style scoped>
 .card {
-    width: 190px;
+    width: 400px;
     padding: 1.9rem 1.2rem;
     text-align: center;
-    background: #ffffff;
-    margin-top: 20px;
+    background: #FFFFFF;
+    margin-bottom: 50px;
     margin-left: 287px;
+    margin: auto;
 }
-   
-
 .field {
     margin-top: 0.55rem;
     display: flex;
@@ -65,29 +63,24 @@ export default {
     border-radius: 4px;
     padding: .5em 1em;
 }
-   
 .input-icon {
     height: 1em;
     width: 1em;
     fill: #A300FF;
 }
-   
 .input-field {
     background: none;
     border: none;
     outline: none;
     width: 100%;
-    color: #f4f4f4;
+    color: #F4F4F4;
 }
-   
 .title {
     margin-bottom: 1rem;
     font-size: 1.5em;
     font-weight: 500;
     color: #14134A;
 }
-   
-
 .btn {
     margin: 1rem;
     border: none;
@@ -101,28 +94,23 @@ export default {
     box-shadow: 0 0 20px #14134A;
     transition: all .3s ease-in-out;
 }
-   
 .btn-link {
     color: #14134A;
     display: block;
     font-size: .75em;
     transition: color .3s ease-out;
    }
-   
    /*Hover & focus*/
 .field input:focus::placeholder {
     opacity: 0;
     transition: opacity .3s;
 }
-   
 .btn:hover {
     background-color: #A300FF;
     color: #14134A;
     box-shadow: 0 8px 24px 0 rgb(16 39 112 / 20%);
 }
-   
 .btn-link:hover {
     color:#A300FF;
 }
-   
 </style>
