@@ -17,14 +17,14 @@
       </thead>
       <tbody>
         <tr v-for="(user, index) in users" :key="index">
-          <td>{{ user.userId }}</td>
+          <td>{{ user.userID }}</td>
           <td>{{ user.firstName }}</td>
           <td>{{ user.lastName }}</td>
           <td>{{ user.gender }}</td>
           <td>{{ user.cellphoneNumber }}</td>
           <td>{{ user.emailAdd }}</td>
           <!-- <td>{{ user.userPass }}</td> -->
-          <td>{{ user.userProfile }}</td>
+          <img :src="user.userProfile">
           <td>{{ user.joinDate }}</td>
           <td>
             <button type="button" class="btn btn warning" data-bs-toggle="modal" data-bs-target="#exampleModal" @click="editUser(user)">Edit</button>
@@ -33,14 +33,12 @@
             <div class="modal-dialog">
               <div class="modal-content">
                 <div class="modal-header">
-                  <h1 class="modal-title fs-5" id="exampleModalLabel">ID</h1>
-                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                   <form>
                     <div class="mb-3">
                       <label for="recipient-name" class="col-form-label">firstName</label>
-                      <input type="text" class="form-control" id="recipient-name">
+                      <input type="text" class="form-control" placeholder="firstName" id="recipient-name">
                     </div>
                     <div class="mb-3">
                       <label for="message-text" class="col-form-label" placeholder="0834597356"></label>
@@ -60,6 +58,8 @@
       </tbody>
     </table>
   </div>
+
+<!--  ==================================================================================== -->
   <div class="table-products">
       <table class="table">
 <thead>
@@ -81,7 +81,7 @@
     <td>{{ product.category }}</td>
     <td>{{ product.price }}</td>
     <td>{{ product.prodQuantity }}</td>
-    <td>{{ product.imgURL }}</td>
+    <img :src="product.imgURL">
   </tr>
 </tbody>
 </table>
@@ -96,10 +96,17 @@ export default {
         users() {
             return this.$store.state.users;
         },
+        products() {
+            return this.$store.state.products;
+        },
     },
     mounted() {
         this.$store.dispatch("getUsers")
+        this.$store.dispatch("getProducts")
     },
+    // mounted() {
+    //     this.$store.dispatch("getProducts")
+    // },
 }
 </script>
 <style scoped>
@@ -116,13 +123,47 @@ font-size: 15px;
   margin-top: 400px;
 }
 
+img{
+  width: 5rem;
+}
+
 h6{
 margin-bottom: 30px;
 margin-top: 10px;
 color: #14134A;
 }
-.btn{
-font-size: 15px;
+
+.btn {
+    margin: 1rem;
+    border: none;
+    border-radius: 4px;
+    font-weight: bold;
+    font-size: .8em;
+    text-transform: uppercase;
+    padding: 0.6em 1.2em;
+    background-color:#14134A;
+    color: #A300FF;
+    box-shadow: 0 0 20px #14134A;
+    transition: all .3s ease-in-out;
+}
+.btn-link {
+    color: #14134A;
+    display: block;
+    font-size: .75em;
+    transition: color .3s ease-out;
+}
+
+.field input:focus::placeholder {
+    opacity: 0;
+    transition: opacity .3s;
+}
+.btn:hover {
+    background-color: #A300FF;
+    color: #14134A;
+    box-shadow: 0 8px 24px 0 rgb(16 39 112 / 20%);
+}
+.btn-link:hover {
+    color:#A300FF;
 }
 .products-view{
 margin-top: 170px;
