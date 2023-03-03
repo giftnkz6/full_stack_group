@@ -9,7 +9,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
                         <li><a href="#home"><i class="fa-solid fa-house-user fa-flip" style="--fa-animation-duration: 3s;"></i></a><router-link to="/">Home</router-link></li>
-                        <li><a href="#about"><i class="fa-solid fa-address-card fa-flip" style="--fa-animation-duration: 3s;"></i></a><router-link to="/about">About</router-link></li>
+                        <!-- <li><a href="#about"><i class="fa-solid fa-address-card fa-flip" style="--fa-animation-duration: 3s;"></i></a><router-link to="/about">About</router-link></li> -->
                         <li><a href="#products"><i class="fa-solid fa-file fa-flip" style="--fa-animation-duration: 3s;"></i></a><router-link to="/products">Products</router-link></li>
                         <li><a href="#login"><i class="fa-solid fa-diagram-project fa-flip" style="--fa-animation-duration: 3s;"></i></a><router-link to="/login">Login</router-link></li>
                         <li><a href="#register"><i class="fa-sharp fa-solid fa-people-group fa-flip" style="--fa-animation-duration: 3s;"></i></a><router-link to="/register">Register</router-link></li>

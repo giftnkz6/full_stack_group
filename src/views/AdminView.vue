@@ -130,7 +130,7 @@ img{
 h6{
 margin-bottom: 30px;
 margin-top: 10px;
-color: #14134A;
+color: white;
 }
 
 .btn {

@@ -31,8 +31,11 @@
   padding: 0;
   margin: 0;
   font-family: monospace;
-/*  height: 100vh;*/
-  background-image: linear-gradient(to bottom right, D49EF3, F37C8D);
+  height: 100vh;
+/*  background-image: url("https://i.postimg.cc/FRw4n76B/DBQr329-Xk-AADJGg.jpg");*/
+  background-repeat: no repeat;
+  background-size: cover;
+  
 }
 img{
   width: 5rem;

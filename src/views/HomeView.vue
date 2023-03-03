@@ -34,10 +34,13 @@ export default {
     column-gap: 2rem;
     margin-top: 3rem;
   }
+  .text{
+    box-shadow: 0.4 0.4 purple;
+  }
   /* body{
     background-color: coral;
   } */
-  @media screen and (min-width: 800) {
+  @media screen and (max-width: 800) {
     .home{
       display: grid;
       grid-template-columns: 1fr;
